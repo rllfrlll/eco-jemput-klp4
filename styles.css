@@ -1,0 +1,606 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Courier+Prime:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* =========================================================
+   KONSEP: lapak pasar.
+   - Header     = tenda kios (tepi bergerigi)
+   - Katalog    = price tag yang digantung
+   - Kalkulator = hasilnya keluar sebagai struk belanja
+   Bahasa visual: outline tinta + bayangan datar (bukan blur).
+   ========================================================= */
+
+:root {
+  --daun:   #14402C;  /* hijau tua daun */
+  --pucuk:  #B7E04B;  /* hijau pucuk / lime */
+  --kuning: #FFD43B;  /* kuning label harga */
+  --cabai:  #E8402A;  /* merah cabai, khusus promo */
+  --kertas: #F1F4E8;  /* latar halaman */
+  --struk:  #FCFCF7;  /* kertas struk */
+  --tinta:  #14201A;  /* teks & outline */
+  --abu:    #4D5A52;
+
+  --font-judul: 'Bricolage Grotesque', 'Plus Jakarta Sans', sans-serif;
+  --font-isi:   'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-struk: 'Courier Prime', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+::selection { background: var(--kuning); color: var(--tinta); }
+
+:focus-visible {
+  outline: 3px solid var(--kuning);
+  outline-offset: 3px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-isi);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--tinta);
+  background-color: var(--kertas);
+  /* tekstur kertas tipis */
+  background-image: radial-gradient(rgba(20, 64, 44, .10) 1px, transparent 1.3px);
+  background-size: 22px 22px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* ================= HEADER + TENDA ================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  padding: 16px clamp(20px, 5vw, 56px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--daun);
+  color: var(--kertas);
+}
+
+/* tepi tenda: tiap gerigi = satu garis, selang-seling hijau & lime */
+header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 12px;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg, var(--daun) 0 24px, var(--pucuk) 24px 48px);
+  -webkit-mask: radial-gradient(circle at 12px 0, #000 11.5px, transparent 12px) 0 0 / 24px 100% repeat-x;
+          mask: radial-gradient(circle at 12px 0, #000 11.5px, transparent 12px) 0 0 / 24px 100% repeat-x;
+}
+
+/* LOGO: simbol (logo.svg) + nama toko di sampingnya */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-judul);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--kertas);
+  text-decoration: none;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+}
+
+header nav a {
+  margin-left: 28px;
+  color: var(--kertas);
+  font-weight: 600;
+  text-decoration: none;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 2px;
+}
+
+header nav a:hover {
+  text-decoration: underline wavy var(--kuning);
+}
+
+/* ================= SECTION UMUM ================= */
+section {
+  width: min(1080px, calc(100% - 32px));
+  margin: 88px 0;
+  scroll-margin-top: 90px;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-judul);
+  font-optical-sizing: auto;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  margin: 0 0 8px;
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--daun);
+  text-align: left;
+  text-wrap: balance;
+}
+
+.subtitle {
+  max-width: 52ch;
+  margin: 0 0 12px;
+  font-size: 1.08rem;
+  color: var(--abu);
+  text-align: left;
+}
+
+/* ================= HERO ================= */
+#hero-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: 56px;
+  padding: clamp(36px, 6vw, 84px) clamp(24px, 6vw, 72px);
+  background: var(--daun);
+  color: var(--kertas);
+  border: 2px solid var(--tinta);
+  border-radius: 28px;
+  box-shadow: 8px 8px 0 var(--pucuk);
+  text-align: left;
+}
+
+/* cap stempel di pojok */
+#hero-section::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -70px;
+  right: -70px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: var(--pucuk);
+}
+
+#hero-section::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -30px;
+  right: -30px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 2px dashed var(--daun);
+}
+
+.badge {
+  display: inline-block;
+  margin-bottom: 28px;
+  padding: 7px 14px;
+  background: var(--kuning);
+  color: var(--tinta);
+  border: 2px solid var(--tinta);
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: .9rem;
+  transform: rotate(-3deg);
+}
+
+h1 {
+  margin: 0 0 24px;
+  max-width: 18ch;
+  font-size: clamp(2.4rem, 6.4vw, 4.6rem);
+  font-weight: 800;
+  line-height: 1.04;
+  color: var(--tinta);
+  text-wrap: balance;
+}
+
+#hero-section h1 { color: var(--kertas); }
+
+/* bagian yang di-highlight dibuat seperti stiker harga */
+.highlight {
+  display: inline-block;
+  padding: 0 .16em;
+  background: var(--kuning);
+  color: var(--tinta);
+  border-radius: .1em;
+  transform: rotate(-1.8deg);
+}
+
+#hero-section p {
+  max-width: 52ch;
+  margin: 0 0 28px;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: rgba(241, 244, 232, .86);
+  text-wrap: pretty;
+}
+
+.keunggulan {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.keunggulan li {
+  padding: 8px 16px;
+  border: 1.5px solid rgba(241, 244, 232, .4);
+  border-radius: 8px;
+  background: rgba(241, 244, 232, .07);
+  color: var(--kertas);
+  font-weight: 600;
+  font-size: .95rem;
+}
+
+/* ================= TOMBOL (efek ditekan) ================= */
+.btn-utama,
+.btn-hitung {
+  font-family: var(--font-isi);
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 15px 30px;
+  border: 2px solid var(--tinta);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.btn-utama {
+  background: var(--kuning);
+  color: var(--tinta);
+  box-shadow: 0 5px 0 var(--tinta);
+}
+
+.btn-hitung {
+  width: 100%;
+  margin-top: 8px;
+  background: var(--daun);
+  color: var(--kertas);
+  box-shadow: 0 5px 0 var(--tinta);
+}
+
+.btn-utama:hover,
+.btn-hitung:hover {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 var(--tinta);
+}
+
+.btn-utama:active,
+.btn-hitung:active {
+  transform: translateY(5px);
+  box-shadow: 0 0 0 var(--tinta);
+}
+
+/* ================= KATALOG = PRICE TAG ================= */
+.katalog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 56px 32px;
+  padding-top: 52px;
+}
+
+.kartu-katalog {
+  --miring: -1.4deg;
+  position: relative;
+  padding: 54px 24px 28px;
+  background: #fff;
+  border: 2px solid var(--tinta);
+  border-radius: 6px 6px 22px 22px;
+  box-shadow: 6px 6px 0 var(--pucuk);
+  text-align: center;
+  transform: rotate(var(--miring));
+  transform-origin: 50% 0;           /* menggantung dari lubang */
+  transition: transform .45s cubic-bezier(.3, 1.6, .5, 1), box-shadow .2s ease;
+}
+
+.kartu-katalog:nth-child(even) { --miring: 1.2deg; }
+
+/* lubang tag */
+.kartu-katalog::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  border: 2px solid var(--tinta);
+  border-radius: 50%;
+  background: var(--kertas);
+}
+
+/* tali tag */
+.kartu-katalog::after {
+  content: "";
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  width: 24px;
+  height: 42px;
+  margin-left: -12px;
+  border: 2px solid var(--daun);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.kartu-katalog:hover {
+  transform: rotate(0deg);
+  box-shadow: 9px 9px 0 var(--pucuk);
+}
+
+.ikon-katalog {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 18px;
+  font-size: 2.6rem;
+  line-height: 1;
+  background: var(--pucuk);
+  border: 2px solid var(--tinta);
+  border-radius: 50%;
+}
+
+.kartu-katalog:nth-child(3n+2) .ikon-katalog { background: var(--kuning); }
+.kartu-katalog:nth-child(3n+3) .ikon-katalog { background: #FFB9A8; }
+
+.kartu-katalog h3 {
+  margin: 0 0 8px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--daun);
+}
+
+.kartu-katalog p {
+  margin: 0 0 18px;
+  font-size: .95rem;
+  line-height: 1.55;
+  color: var(--abu);
+}
+
+/* spesifisitas dinaikkan, jadi tidak perlu !important */
+.kartu-katalog .harga {
+  margin: 20px 0 14px;
+  padding-top: 16px;
+  border-top: 2px dashed rgba(20, 32, 26, .3);   /* garis sobekan tag */
+  font-family: var(--font-judul);
+  font-size: 2rem;
+  font-weight: 800; 
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--tinta);
+}
+}
+
+.per-kg {
+  font-family: var(--font-isi);
+  font-size: .95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--abu);
+}
+
+.promo-box {
+  display: inline-block;
+  padding: 7px 12px;
+  background: var(--cabai);
+  color: #fff;
+  border-radius: 4px;
+  font-size: .85rem;
+  font-weight: 700;
+  line-height: 1.3;
+  transform: rotate(-2deg);
+}
+
+/* ================= KALKULATOR ================= */
+.kalkulator-wrapper {
+  padding: clamp(28px, 5vw, 56px);
+  background: #fff;
+  border: 2px solid var(--tinta);
+  border-radius: 24px;
+  box-shadow: 8px 8px 0 var(--pucuk);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+label {
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--tinta);
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--font-isi);
+  font-size: 1rem;
+  color: var(--tinta);
+  background: var(--kertas);
+  border: 2px solid var(--tinta);
+  border-radius: 10px;
+  transition: background-color .2s ease, box-shadow .2s ease;
+}
+
+input::placeholder { color: #8A958E; }
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1.5l6 6 6-6' fill='none' stroke='%2314201A' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  background-color: #fff;
+  box-shadow: 4px 4px 0 var(--pucuk);
+}
+
+.input-icon { position: relative; }
+
+.input-icon input { padding-right: 64px; }
+
+.satuan {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-struk);
+  font-weight: 700;
+  color: var(--abu);
+  pointer-events: none;
+}
+
+/* ================= HASIL = STRUK BELANJA ================= */
+#hasil-perhitungan {
+  display: none;
+  position: relative;
+  max-width: 420px;
+  margin: 44px auto 20px;
+  padding: 30px 28px 30px;
+  background: var(--struk);
+  color: var(--tinta);
+  font-family: var(--font-struk);
+  text-align: left;
+  box-shadow: 0 0 0 2px var(--tinta);
+  transform: rotate(-1deg);
+}
+
+/* tepi bawah struk bergerigi */
+#hasil-perhitungan::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 9px;
+  background: conic-gradient(from -45deg at bottom, transparent, var(--struk) 1deg 90deg, transparent 91deg) 50% / 18px 100%;
+  filter: drop-shadow(0 2px 0 var(--tinta));
+}
+
+#hasil-perhitungan.show {
+  display: block;
+  animation: cetak .7s steps(14, end);   /* kertas keluar dari mesin kasir */
+}
+
+@keyframes cetak {
+  from { clip-path: inset(0 -4px 100% -4px); }
+  to   { clip-path: inset(-4px -4px -14px -4px); }
+}
+
+.hasil-rincian {
+  margin: 0;
+  padding: 8px 0;
+  font-size: 1rem;
+  color: var(--tinta);
+  border-bottom: 1px dashed rgba(20, 32, 26, .35);
+}
+
+.hasil-total {
+  margin: 16px 0 0;
+  padding-top: 14px;
+  border-top: 2px dashed var(--tinta);
+  font-size: clamp(1.7rem, 5vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: right;
+  color: var(--tinta);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  width: 100%;
+  margin-top: auto;
+  padding: 56px 20px;
+  background: var(--daun);
+  color: rgba(241, 244, 232, .8);
+  border-top: 2px solid var(--tinta);
+  text-align: center;
+}
+
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-family: var(--font-judul);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--kertas);
+}
+
+.credit {
+  font-size: .85rem;
+  opacity: .7;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 20px;
+  }
+
+  header nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  header nav a { margin: 0; }
+
+  section { margin: 64px 0; }
+
+  #hero-section { box-shadow: 5px 5px 0 var(--pucuk); }
+
+  #hero-section::before { width: 150px; height: 150px; top: -60px; right: -60px; }
+  #hero-section::after  { display: none; }
+
+  .kalkulator-wrapper { box-shadow: 5px 5px 0 var(--pucuk); }
+}
+
+/* ================= AKSESIBILITAS ================= */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation: none !important;
+  }
+}

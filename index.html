@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoJemput - Platform Jemput Sampah Terpilah</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Bagian 1: Header (CEO) -->
+  <header id="header-section" data-role="CEO">
+    <div class="logo">
+      <!-- Logo Bawaan berbasis SVG (Vektor) -->
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22c0 0 8-4 8-10 0-6-8-10-8-10s-8 4-8 10c0 6 8 10 8 10z"></path>
+        <path d="M12 22V12"></path>
+      </svg>
+      EcoJemput
+    </div>
+    <nav>
+      <a href="#hero-section">Beranda</a>
+      <a href="#catalog-section">Katalog</a>
+      <a href="#calc-section">Kalkulator</a>
+    </nav>
+  </header>
+
+<!-- Bagian 2: Hero (PM 1) -->
+  <section id="hero-section" data-role="PM">
+    <div class="hero-content">
+      <div class="badge">🌱 Pilah dari Rumah, Cuan sampai Dompet</div>
+      
+      <h1>Pilah Sampahmu, <br><span class="highlight">Panen Cuan!</span></h1>
+      
+      <p>EcoJemput bikin daur ulang jadi lebih mudah! Pilah sampah plastik, kardus, dan elektronik bekas, kami jemput langsung ke rumah atau kost dan ubah setiap kilonya menjadi tabungan untukmu.</p>
+
+
+        <p>Yuk, mulai langkah kecil untuk bumi yang lebih hijau! ♻️</p>
+      
+
+      
+      <!-- Dua Tombol Aksi -->
+      <div class="hero-buttons" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <!-- Tombol Utama ke Kalkulator -->
+        <button class="btn-utama" onclick="document.getElementById('calc-section').scrollIntoView({behavior: 'smooth'})">
+          Hitung Tabunganmu Sekarang
+        </button>
+        
+        <!-- Tombol Sekunder ke Katalog -->
+        <button class="btn-sekunder" onclick="document.getElementById('catalog-section').scrollIntoView({behavior: 'smooth'})" 
+          style="background-color: transparent; color: var(--primary, #15803D); border: 2px solid var(--primary, #15803D); padding: 14px 28px; font-size: 1rem; font-weight: 600; border-radius: 6px; cursor: pointer; transition: 0.2s; font-family: inherit;">
+          Lihat Paket
+        </button>
+      </div>
+    </div>
+  </section>
+
+ <!-- Bagian 3: Katalog (PM 2) -->
+  <section id="catalog-section" data-role="PM">
+    <div class="section-header">
+      <h2>Kategori Sampah Terpilah</h2>
+      <p class="subtitle">Pilah sampah Anda sesuai kategori berikut untuk nilai konversi maksimal.</p>
+    </div>
+    
+    <div class="katalog-container">
+      <!-- Paket 1 -->
+      <div class="kartu-katalog">
+        <div class="ikon-katalog">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15.2 22H8.8a2 2 0 0 1-2-1.79L5 3h14l-1.81 17.21A2 2 0 0 1 15.2 22Z"/><path d="M6 7h12"/><path d="M10 15v-6"/><path d="M14 15v-6"/><path d="M8 3V2h8v1"/></svg>
+        </div>
+        <h3>CuanPlast</h3>
+        <p>Untuk botol minum, gelas plastik, dan kemasan plastik bersih. Gratis jemput ke rumah atau kost, plus bukti timbang digital.</p>
+        
+        <!-- INI BAGIAN YANG DIUBAH (harga dan per-kg) -->
+        <div class="harga">Rp3.000 <span class="per-kg">/ kg</span></div>
+        <div class="promo-box">Promo: PILAHCUAN (Bonus 10%)</div>
+      </div>
+
+      <!-- Paket 2 -->
+      <div class="kartu-katalog">
+        <div class="ikon-katalog">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M3 15h6"/><path d="M3 19h6"/><path d="M13 14h6"/></svg>
+        </div>
+        <h3>PaperVault</h3>
+        <p>Untuk kardus paket, kertas bekas, dan koran. Kami jemput sesuai jadwal, kamu cukup menumpuknya dengan rapi dan kering.</p>
+        
+        <!-- INI BAGIAN YANG DIUBAH (harga dan per-kg) -->
+        <div class="harga">Rp2.000 <span class="per-kg">/ kg</span></div>
+        <div class="promo-box">Promo: PILAHCUAN (Bonus 10%)</div>
+      </div>
+
+      <!-- Paket 3 -->
+      <div class="kartu-katalog">
+        <div class="ikon-katalog">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        </div>
+        <h3>E-Cuan</h3>
+        <p>Untuk charger, kabel, ponsel rusak, dan perangkat elektronik bekas. Dikelola aman agar komponen berbahaya tidak mencemari lingkungan.</p>
+        
+        <!-- INI BAGIAN YANG DIUBAH (harga dan per-kg) -->
+        <div class="harga">Rp10.000 <span class="per-kg">/ kg</span></div>
+        <div class="promo-box">Promo: PILAHCUAN (Bonus 10%)</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Bagian 4: Kalkulator (SE 1 & 2) -->
+  <section id="calc-section" data-role="SE">
+    <div class="kalkulator-wrapper">
+      <div class="calc-header">
+        <h2>Simulasi Tabungan</h2>
+        <p>Hitung estimasi saldo yang akan Anda peroleh dari sampah terpilah.</p>
+      </div>
+      
+      <form id="calc-form">
+        <div class="form-group">
+          <label for="kategori">Kategori Sampah</label>
+          <select id="kategori" required>
+            <option value="" disabled selected>Pilih jenis limbah...</option>
+            <option value="3000">CuanPlast - Plastik (Rp3.000/kg)</option>
+            <option value="2000">PaperVault - Kertas & Kardus (Rp2.000/kg)</option>
+            <option value="10000">E-Cuan - Elektronik (Rp10.000/kg)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="berat">Berat Estimasi (Kg)</label>
+          <div class="input-box">
+            <input type="number" id="berat" min="1" placeholder="0" required>
+            <span class="suffix">Kg</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="promo">Kode Promosi (Opsional)</label>
+          <!-- Mengubah placeholder menjadi PILAHCUAN -->
+          <input type="text" id="promo" placeholder="Ketik PILAHCUAN">
+        </div>
+
+        <button type="button" class="btn-hitung" onclick="hitungTabungan()">Kalkulasi Nilai</button>
+      </form>
+
+      <div id="hasil-perhitungan">
+        <!-- Hasil JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Bagian 5: Footer (CEO) -->
+  <footer id="footer-section" data-role="CEO">
+    <div class="footer-logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c0 0 8-4 8-10 0-6-8-10-8-10s-8 4-8 10c0 6 8 10 8 10z"></path></svg>
+      EcoJemput
+    </div>
+    <p>&copy; 2026 Platform Jemput Sampah Terpilah.</p>
+    <p class="credit">Tugas Praktikum WebDev D - Kelompok 4</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
